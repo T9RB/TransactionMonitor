@@ -1,0 +1,39 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:TransactionMonitor.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="250"
+        x:Class="TransactionMonitor.Views.AuthWindow"
+        Icon="/Assets/logo.ico"
+        Width="450"
+        Height="250"
+        Title="Авторизация"
+        WindowState="Normal"
+        WindowStartupLocation="CenterOwner">
+    <Design.DataContext>
+        <viewModels:AuthViewModel/>
+    </Design.DataContext>
+    <Border>
+        <StackPanel>
+            <TextBox Margin="10"
+                     Watermark="Адрес кошелька"/>
+            <ComboBox
+                Items="{Binding Networks}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding ImageChain}" Width="60"/>
+                            <TextBlock Text="{Binding  Path=Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Button
+                Content="Войти"
+                Margin="30"
+                CornerRadius="20">
+            </Button>
+        </StackPanel>
+    </Border>
+</Window>
