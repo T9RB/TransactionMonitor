@@ -14,16 +14,19 @@
     <Design.DataContext>
         <viewModels:AuthViewModel/>
     </Design.DataContext>
-    <Border>
+    
+    <Border
+        CornerRadius="20">
         <StackPanel>
             <TextBox Margin="10"
-                     Watermark="Адрес кошелька"/>
+                     Watermark="Адрес кошелька"
+                     Text="{Binding wallet_address}"/>
             <ComboBox
-                Items="{Binding Networks}">
-                <ComboBox.ItemTemplate>
+                Items="{Binding Networks}"
+                SelectedItem="{Binding Selected_Network}">
+            <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding ImageChain}" Width="60"/>
                             <TextBlock Text="{Binding  Path=Name}"/>
                         </StackPanel>
                     </DataTemplate>
@@ -32,7 +35,8 @@
             <Button
                 Content="Войти"
                 Margin="30"
-                CornerRadius="20">
+                CornerRadius="20"
+                Command="{Binding Auth}">
             </Button>
         </StackPanel>
     </Border>

@@ -7,5 +7,5 @@ public class Networks
 {
     
     public string Name { get; set ; }
-    public Image ImageChain { get; set; }
+    public string Id { get; set; }
 }

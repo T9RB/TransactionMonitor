@@ -2,7 +2,10 @@
 
 public class CovalentNetworks
 {
-    public CovalentNetworks(string value) { Value = value; }
+    public CovalentNetworks(string value)
+    {
+        Value = value;
+    }
     public string Value { get; private set; }
 
     public static CovalentNetworks Ethereum { get { return new CovalentNetworks("1"); } }

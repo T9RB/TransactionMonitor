@@ -8,11 +8,27 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="TransactionMonitor"
         WindowState="Normal"
-        Width="960"
+        Width="900"
         Height="600"
         WindowStartupLocation="CenterScreen">
        
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
+    
+    <Border
+        CornerRadius="20">
+        <ListBox
+            Margin="0"
+            Items="{Binding TokensList}">
+           <ListBox.ItemTemplate>
+               <DataTemplate>
+                   <StackPanel>
+                       <TextBlock Text="{Binding Path=Name_token}"/>
+                       <TextBlock Text="{Binding Path=Balance}"/>
+                   </StackPanel>
+               </DataTemplate>
+           </ListBox.ItemTemplate>
+        </ListBox>
+    </Border>
 </Window>

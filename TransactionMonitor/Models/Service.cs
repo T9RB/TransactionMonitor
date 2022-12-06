@@ -5,27 +5,41 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Resources;
 using System.Text;
+using System.Text.Json.Nodes;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Newtonsoft.Json.Linq;
+using TransactionMonitor.ViewModels;
 
 namespace CovalentSDK.Covalent;
 
 public class Service
 {
-    public bool authStatus = false;
+    
+    public CovalentMethods CovalentMethods = new CovalentMethods();
+    
 
-    public Image GetImage(string url)
+    public bool Authorization(string wallet_address, string sel_net)
     {
-        using var client = new HttpClient();
-
-        var result = client.GetByteArrayAsync(url);
-
-        byte[] content = result.Result;
-
-        using (MemoryStream imgStream = new MemoryStream(content))
+        bool Auth_Check = false;
+        var check = CovalentMethods.GetTokenBalanceForAddress(sel_net, wallet_address);
+        if (check["data"] != null)
         {
-            return Image.FromStream(imgStream, false, false);
+            Auth_Check = true;
+            return Auth_Check;
+        }
+        else
+        {
+            Auth_Check = false;
+            return Auth_Check;
         }
     }
+
+    public void MessageBoxShow(string title ,string text)
+    {
+        var messageBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager
+            .GetMessageBoxStandardWindow(title, text);
+        messageBoxStandardWindow.Show();
+    }
+   
 
 }
