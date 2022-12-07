@@ -1,6 +1,9 @@
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using CovalentSDK.Covalent;
+using Microsoft.VisualBasic;
 using ReactiveUI;
 using TransactionMonitor.Views;
 
@@ -14,26 +17,32 @@ public class AuthViewModel : ViewModelBase
     public AuthViewModel()
     {
         LoadChains();
-    }
-    public void Auth()
-    {
-        Service sr = new Service();
-        string nt = Selected_Network.Id;
-        bool auth_status = sr.Authorization(wallet_address, nt);
-        if (auth_status == true)
+        
+        Authorization = ReactiveCommand.Create(() =>
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            sr.MessageBoxShow("Предупреждение", "Вы вошли!");
-            new MainWindowViewModel(nt, wallet_address);
-        }
-        else
-        {
-            sr.MessageBoxShow("Предупреждение","Неправильный номер кошелька! Повторите попытку");
-        }
+            Service sr = new Service();
+            string nt = Selected_Network.Id;
+            bool auth_status = sr.Authorization(wallet_address, nt);
+            if (auth_status == true)
+            {
+                var thiswindow = new AuthWindow();
+                thiswindow.Hide();
+
+                var window = new MainWindow();
+                window.Show();
+                new MainWindowViewModel().Tokens_Add_Col(nt, wallet_address);
+                sr.MessageBoxShow("Предупреждение", "Вы вошли!");
+            }
+
+            if (auth_status == false)
+            {
+                sr.MessageBoxShow("Предупреждение","Неверные данные! Повторите попытку");
+            }
+        });
+        
         
     }
-    
+
     public void LoadChains()
     {
         CovalentMethods cm = new CovalentMethods();
@@ -66,6 +75,9 @@ public class AuthViewModel : ViewModelBase
             OnPropertyChanged();
         }
     }
+    
+    public ICommand Authorization { get; }
+    
 }
     
 

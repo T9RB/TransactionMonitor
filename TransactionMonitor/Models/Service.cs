@@ -20,9 +20,9 @@ public class Service
 
     public bool Authorization(string wallet_address, string sel_net)
     {
-        bool Auth_Check = false;
+        bool Auth_Check;
         var check = CovalentMethods.GetTokenBalanceForAddress(sel_net, wallet_address);
-        if (check["data"] != null)
+        if (check != null)
         {
             Auth_Check = true;
             return Auth_Check;

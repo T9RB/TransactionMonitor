@@ -11,9 +11,9 @@ namespace TransactionMonitor.ViewModels
     {
         
         public ObservableCollection<Tokens> TokensList { get; } = new();
-        public MainWindowViewModel(string Network, string Wallet)
+        public MainWindowViewModel()
         {
-            Tokens_Add_Col(Network, Wallet);
+            
         }
 
         public void Tokens_Add_Col(string Network, string Wallet)
@@ -35,7 +35,6 @@ namespace TransactionMonitor.ViewModels
             {
                 TokensList.Add(new Tokens() {Name_token = value.name, Balance = value.balance});
             }
-
         }
     }
 }

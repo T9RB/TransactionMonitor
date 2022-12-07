@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Newtonsoft.Json.Linq;
 
 namespace CovalentSDK.Covalent;
@@ -17,7 +18,7 @@ public class CovalentSession
     
     public JObject query(string requestURL)
     {
-
+        Service sr = new Service();
         using var client = new HttpClient();
         client.DefaultRequestHeaders.Accept.Add(
             new MediaTypeWithQualityHeaderValue("application/json"));
@@ -26,10 +27,20 @@ public class CovalentSession
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
             Convert.ToBase64String(authToken));
 
-        var result = client.GetStringAsync(requestURL);
+        try
+        {
+            var result = client.GetStringAsync(requestURL);
+            var content = result.Result;
+            JObject json = JObject.Parse(content);
+            return json;
+        }
+        catch (Exception e)
+        {
+            JObject js = null;
+            return js;
+        }
 
-        var content = result.Result;
-        JObject json = JObject.Parse(content);
-        return json;
+
+
     }
 }

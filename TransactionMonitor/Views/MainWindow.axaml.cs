@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
 using CovalentSDK.Covalent;
 using ReactiveUI;
@@ -13,8 +14,6 @@ namespace TransactionMonitor.Views
         public MainWindow()
         {
             InitializeComponent();
-         
-            
         }
     }
 }
