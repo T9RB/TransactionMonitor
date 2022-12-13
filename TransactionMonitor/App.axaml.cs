@@ -4,6 +4,7 @@ using Avalonia.Markup.Xaml;
 using TransactionMonitor.ViewModels;
 using TransactionMonitor.Views;
 using System.Windows;
+using Avalonia.Controls;
 
 namespace TransactionMonitor
 {
@@ -23,6 +24,7 @@ namespace TransactionMonitor
                     DataContext = new AuthViewModel(),
                 };
                 
+
             }
 
             base.OnFrameworkInitializationCompleted();

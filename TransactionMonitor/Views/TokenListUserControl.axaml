@@ -1,0 +1,29 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:TransactionMonitor.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="300"
+             x:Class="TransactionMonitor.Views.TokenListUserConrtol">
+    
+    <Design.DataContext>
+        <viewModels:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    <DockPanel>
+        <StackPanel>
+            <ListBox
+                Items="{Binding TokensList}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name_token}"/>
+                            <TextBlock Text="{Binding Balance}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                
+            </ListBox>
+        </StackPanel>
+    </DockPanel>
+</UserControl>
