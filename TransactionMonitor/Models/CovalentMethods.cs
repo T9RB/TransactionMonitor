@@ -15,72 +15,72 @@ public class CovalentMethods
         _covSession = covalentSession;
     }
     
-    public JObject GetAllChain()
+    public JObject? GetAllChain()
     {
         string url = "https://api.covalenthq.com/v1/chains/";
-        return _covSession.query(url);
+        return _covSession.Query(url);
     }
 
-    public JObject GetTokenBalanceForAddress(string covNet,string walletAddress)
+    public JObject? GetTokenBalanceForAddress(string covNet,string walletAddress)
     {
         
         string url = $"https://api.covalenthq.com/v1/{covNet}/address/{walletAddress}/balances_v2/";
-        return _covSession.query(url);
+        return _covSession.Query(url);
     }
     
-    public JObject GetTransactionForAddress(string covNet,string walletAddress)
+    public JObject? GetTransactionForAddress(string covNet,string walletAddress)
     {
         
         string url = $"https://api.covalenthq.com/v1/{covNet}/address/{walletAddress}/transactions_v2/";
-        return _covSession.query(url);
+        return _covSession.Query(url);
     }
     
-    public JObject GetErc20TokenForAddress(string covNet,string walletAddress, string usdcContractAddress)
+    public JObject? GetErc20TokenForAddress(string covNet,string walletAddress, string usdcContractAddress)
     {
         
         string url = $"https://api.covalenthq.com/v1/{covNet}/address/{walletAddress}/transfers_v2/?contract-address={usdcContractAddress}";
-        return _covSession.query(url);
+        return _covSession.Query(url);
     }
     
-    public JObject GetPoolsByAddress(string covNet,string dexname, string usdcPoolAddress)
+    public JObject? GetPoolsByAddress(string covNet,string dexname, string usdcPoolAddress)
     {
         
         string url = $"https://api.covalenthq.com/v1/{covNet}/xy=k/{dexname}/pools/address/{usdcPoolAddress}/";
-        return _covSession.query(url);
+        return _covSession.Query(url);
     }
     
-    public JObject GetLogByContract(string covNet,string startingBlock,string  endingBlock,string usdcContractAddress)
+    public JObject? GetLogByContract(string covNet,string startingBlock,string  endingBlock,string usdcContractAddress)
     {
         
         string url = $"https://api.covalenthq.com/v1/{covNet}/events/address/{usdcContractAddress}/?starting-block={startingBlock}&ending-block={endingBlock}";
-        return _covSession.query(url);
+        return _covSession.Query(url);
     }
-    public JObject GetHistoricalTokenPrices(string covNet,string quoteCurrency,string  contractAddresses)
+    public JObject? GetHistoricalTokenPrices(string covNet,string quoteCurrency,string  contractAddresses)
     {
         
         string url = $"https://api.covalenthq.com/v1/pricing/historical_by_addresses_v2/{covNet}/{quoteCurrency}/{contractAddresses}/";
-        return _covSession.query(url);
+        return _covSession.Query(url);
     }
     
-    public JObject GetHistoricalPortfolio(string covNet,string walletAddress)
+    public JObject? GetHistoricalPortfolio(string covNet,string walletAddress)
     {
         
         string url = $"https://api.covalenthq.com/v1/{covNet}/address/{walletAddress}/portfolio_v2/";
-        return _covSession.query(url);
+        return _covSession.Query(url);
     }
     
-    public JObject GetATransaction(string covNet,string txnHash)
+    public JObject? GetATransaction(string covNet,string txnHash)
     {
         
         var url = $"https://api.covalenthq.com/v1/{covNet}/transaction_v2/{txnHash}/";
-        return _covSession.query(url);
+        return _covSession.Query(url);
     }
     
-    public JObject GetXyTransaction(string covNet,string dexname, string walletAddress)
+    public JObject? GetXyTransaction(string covNet,string dexname, string walletAddress)
     {
         
         var url = $"https://api.covalenthq.com/v1/{covNet}/xy=k/{dexname}/address/{walletAddress}/transactions/";
-        return _covSession.query(url);
+        return _covSession.Query(url);
     }
     
     

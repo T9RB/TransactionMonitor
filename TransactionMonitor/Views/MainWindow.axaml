@@ -3,7 +3,7 @@
         xmlns:vm="using:TransactionMonitor.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:views="clr-namespace:TransactionMonitor.Views"
+        xmlns:local="using:TransactionMonitor.Views"
         mc:Ignorable="d" d:DesignWidth="960" d:DesignHeight="600"
         x:Class="TransactionMonitor.Views.MainWindow"
         Icon="/Assets/logo.ico"
@@ -12,11 +12,27 @@
         Width="900"
         Height="600"
         WindowStartupLocation="CenterScreen">
-    <views:TokenListUserConrtol/>   
+   
     <Design.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:TokenListViewModel/>
     </Design.DataContext>
     
-    
-
+    <Panel>
+        <ExperimentalAcrylicBorder>
+            <ExperimentalAcrylicBorder.Material>
+                <ExperimentalAcrylicMaterial
+                    BackgroundSource="Digger"
+                    TintColor="Black"
+                    TintOpacity="1">
+                </ExperimentalAcrylicMaterial>
+            </ExperimentalAcrylicBorder.Material>
+        </ExperimentalAcrylicBorder>
+        <Panel Margin="30 30 500 30">
+            <local:TokenListUserConrtol/>
+        </Panel>
+        <Panel Margin="30 0 0 0">
+            <local:TransactionListControl>
+        </Panel>
+        
+    </Panel>
 </Window>

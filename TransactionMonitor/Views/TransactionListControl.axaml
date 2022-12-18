@@ -3,12 +3,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:TransactionMonitor.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="250"
-             x:Class="TransactionMonitor.Views.TokenListUserConrtol">
-    
+             mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="150"
+             x:Class="TransactionMonitor.Views.TransactionListControl">
     <Design.DataContext>
         <viewModels:MainWindowViewModel/>
     </Design.DataContext>
+    
     <DockPanel>
         <ListBox Items="{Binding TokensList}" Margin="0 0 0 0">
             <ListBox.ItemTemplate>
@@ -22,5 +22,4 @@
             </ListBox.ItemTemplate>
         </ListBox>
     </DockPanel>
-    
 </UserControl>

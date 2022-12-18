@@ -10,33 +10,32 @@ namespace CovalentSDK.Covalent;
 
 public class CovalentSession
 {
-    private string apiKey;
+    private string _apiKey;
     
     public CovalentSession() {
-        this.apiKey = "ckey_133dcc45a47a44e599ebb752833";
+        this._apiKey = "ckey_133dcc45a47a44e599ebb752833";
     }
     
-    public JObject query(string requestURL)
+    public JObject? Query(string requestUrl)
     {
-        Service sr = new Service();
         using var client = new HttpClient();
         client.DefaultRequestHeaders.Accept.Add(
             new MediaTypeWithQualityHeaderValue("application/json"));
 
-        var authToken = Encoding.ASCII.GetBytes($"{apiKey}:");
+        var authToken = Encoding.ASCII.GetBytes($"{_apiKey}:");
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
             Convert.ToBase64String(authToken));
 
         try
         {
-            var result = client.GetStringAsync(requestURL);
+            var result = client.GetStringAsync(requestUrl);
             var content = result.Result;
-            JObject json = JObject.Parse(content);
+            JObject? json = JObject.Parse(content);
             return json;
         }
         catch (Exception e)
         {
-            JObject js = null;
+            JObject? js = null;
             return js;
         }
 

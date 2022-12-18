@@ -18,28 +18,39 @@
     
     <Border
         CornerRadius="20">
-        <StackPanel>
-            <TextBox Margin="10"
-                     Watermark="Адрес кошелька"
-                     Text="{Binding wallet_address}"/>
-            <ComboBox
-                Items="{Binding Networks}"
-                SelectedItem="{Binding Selected_Network}">
-            <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding  Path=Name}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <Button
-                Content="Войти"
-                Margin="30"
-                CornerRadius="20"
-                Command="{Binding Authorization}">
-            </Button>
-        </StackPanel>
+        <ExperimentalAcrylicBorder>
+            <StackPanel>
+                <TextBox Margin="20"
+                         Watermark="Адрес кошелька"
+                         Text="{Binding wallet_address}"/>
+                <ComboBox
+                    Items="{Binding Networks}"
+                    SelectedItem="{Binding Selected_Network}"
+                    Margin="20 0 0 0">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding  Path=Name}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button
+                    Content="     Войти     "
+                    Margin="175 100 0 0"
+                    CornerRadius="20"
+                    Command="{Binding Authorization}">
+                </Button>
+            </StackPanel>
+            <ExperimentalAcrylicBorder.Material>
+                <ExperimentalAcrylicMaterial
+                    BackgroundSource="Digger"
+                    TintColor="Black"
+                    TintOpacity="1">
+                </ExperimentalAcrylicMaterial>
+            </ExperimentalAcrylicBorder.Material>
+        </ExperimentalAcrylicBorder>
+        
     </Border>
     
 </Window>
