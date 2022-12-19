@@ -81,6 +81,12 @@ public class CovalentMethods
         var url = $"https://api.covalenthq.com/v1/{covNet}/xy=k/{dexname}/address/{walletAddress}/transactions/";
         return _covSession.Query(url);
     }
-    
-    
+
+    public JObject? GetSupporteDEXes()
+    {
+        var url = $"https://api.covalenthq.com/v1/xy=k/supported_dexes/";
+        return _covSession.Query(url);
+    }
+
+
 }

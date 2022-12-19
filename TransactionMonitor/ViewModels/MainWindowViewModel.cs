@@ -15,9 +15,43 @@ namespace TransactionMonitor.ViewModels
     {
         public ObservableCollection<Tokens> TokensList { get; } = new();
         public ObservableCollection<Transaction> TransactionsList { get; } = new();
+        public ObservableCollection<ActivePoolsByAddress> ActivePoolsByAddresses { get; } = new();
+
         public MainWindowViewModel()
         {
-            AuthViewModel authViewModel = new AuthViewModel();
+            AddPoolsList = ReactiveCommand.Create(() =>
+            {
+                CovalentMethods cm = new CovalentMethods();
+                AuthViewModel authViewModel = new AuthViewModel();
+                Service sr = new Service();
+                var ActivePools = cm.GetPoolsByAddress(ChainId, Name_Protocol,
+                    PoolAddress);
+                if (ActivePools == null)
+                {
+                    sr.MessageBoxShow("Предупреждение", "Вы ввели неверные данные");
+                }
+                else
+                {
+                    var dex_name = " ";
+                    var total_suply = " ";
+                    var total_liquidity_quote = " ";
+
+                    var SelPools =
+                        from pools in ActivePools["data"]["items"]
+                        select new
+                        {
+                            dex_name = (string)pools["dex_name"],
+                            total_liquidity_quote = (string)pools["total_liquidity_quote"],
+                            total_suply = (string)pools["total_supply"]
+                        };
+                    foreach (var value in SelPools)
+                    {
+                        ActivePoolsByAddresses.Add(new ActivePoolsByAddress()
+                            {Dex_Name = value.dex_name,Total_Quote = value.total_liquidity_quote, Total_Suply = value.total_suply});
+                    }
+                }
+               
+            });
         }
 
         public void Tokens_Add_Col(string Network, string Wallet)
@@ -26,7 +60,7 @@ namespace TransactionMonitor.ViewModels
             Service sr = new Service();
             var Tokens = cm.GetTokenBalanceForAddress(Network, Wallet);
             var Transaction = cm.GetTransactionForAddress(Network, Wallet);
-            if (Tokens == null)
+            if (Tokens == null || Transaction == null)
             {
                 sr.MessageBoxShow("Предупреждение", "Вы ввели неверные данные");
             }
@@ -76,9 +110,17 @@ namespace TransactionMonitor.ViewModels
                     }
                    
                 }
-                
             }
         }
 
+        public void LoadData(string chainId, string dex)
+        {
+            ChainId = chainId;
+            Name_Protocol = dex;
+        }
+        public string PoolAddress { get; set; }
+        public string ChainId { get; set; }
+        public string Name_Protocol { get; set; }
+        public ICommand AddPoolsList { get; }
     }
 }

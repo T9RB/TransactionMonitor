@@ -10,11 +10,13 @@
         Height="250"
         Title="Авторизация"
         WindowState="Normal"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent">
     <Design.DataContext>
         <viewModels:AuthViewModel/>
     </Design.DataContext>
-    
     
     <Border
         CornerRadius="20">
@@ -35,9 +37,27 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
+                <ComboBox
+                    Items="{Binding ProtocolsList}"
+                    SelectedItem="{Binding Selected_Protocols}"
+                    Margin="20 10 0 0">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding  Path=NameProtocol}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button
+                    Content="Прогрузить протоколы"
+                    Margin="175 -30 0 0"
+                    CornerRadius="20"
+                    Command="{Binding LoadProtocols}">
+                </Button>
                 <Button
                     Content="     Войти     "
-                    Margin="175 100 0 0"
+                    Margin="175 50 0 0"
                     CornerRadius="20"
                     Command="{Binding Authorization}">
                 </Button>
@@ -50,7 +70,5 @@
                 </ExperimentalAcrylicMaterial>
             </ExperimentalAcrylicBorder.Material>
         </ExperimentalAcrylicBorder>
-        
     </Border>
-    
 </Window>

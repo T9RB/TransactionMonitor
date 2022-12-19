@@ -11,30 +11,41 @@
         WindowState="Normal"
         Width="900"
         Height="600"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        
+        
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent">
    
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    <Panel>
-        <ExperimentalAcrylicBorder>
-            <ExperimentalAcrylicBorder.Material>
-                <ExperimentalAcrylicMaterial
-                    BackgroundSource="Digger"
-                    TintColor="Black"
-                    TintOpacity="1">
-                </ExperimentalAcrylicMaterial>
-            </ExperimentalAcrylicBorder.Material>
-        </ExperimentalAcrylicBorder>
-        <Panel Margin="30 30 500 31">
-            <local:TokenListUserConrtol/>
+    <DockPanel>
+        <Panel>
+            <ExperimentalAcrylicBorder>
+                <ExperimentalAcrylicBorder.Material>
+                    <ExperimentalAcrylicMaterial
+                        BackgroundSource="Digger"
+                        TintColor="Black"
+                        TintOpacity="1">
+                    </ExperimentalAcrylicMaterial>
+                </ExperimentalAcrylicBorder.Material>
+            </ExperimentalAcrylicBorder>
+            <Button Content="Профиль"
+                    Margin="0 -240 800 300"
+                    DockPanel.Dock="Bottom"
+                    HorizontalAlignment="Center"/>
+            <Panel Margin="30 70 500 31">
+                <local:TokenListUserConrtol/>
+            </Panel>
+            <Panel Margin="550 30 30 340">
+                <local:TransactionListControl/>
+            </Panel>
+            <Panel Margin="550 300 30 100">
+                <local:PoolUserControl/>
+            </Panel>
         </Panel>
-        <Panel Margin="550 30 30 340">
-            <local:TransactionListControl/>
-        </Panel>
-        <Panel Margin="550 350 30 200">
-            <local:PoolUserControl/>
-        </Panel>
-    </Panel>
+    </DockPanel>
+   
 </Window>

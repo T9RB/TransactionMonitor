@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:TransactionMonitor.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="150"
+             mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="250"
              x:Class="TransactionMonitor.Views.PoolUserControl">
     <Design.DataContext>
         <viewModels:MainWindowViewModel/>
@@ -11,7 +11,25 @@
     <DockPanel>
       
         <StackPanel>
-            <TextBlock Text="123"/>
+            <TextBox Text="{Binding PoolAddress}" Watermark="Pool адрес"/>
+            <Button
+                Content="Прогрузить pool"
+                CornerRadius="20"
+                Margin="60 5 0 0"
+                Command="{Binding AddPoolsList}"/>
+            
+            <ListBox Items="{Binding ActivePoolsByAddresses}"
+                     Margin="0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Dex_Name}"/>
+                            <TextBlock Text="{Binding Total_Quote}"/>
+                            <TextBlock Text="{Binding Total_Suply}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
     </DockPanel>
 </UserControl>

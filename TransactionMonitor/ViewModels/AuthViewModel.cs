@@ -15,13 +15,63 @@ namespace TransactionMonitor.ViewModels;
 public class AuthViewModel : ViewModelBase
 {
     private Networks _selNetworks;
+    private Protocols _selProtocols;
     public ObservableCollection<Networks> Networks { get; } = new();
+    public ObservableCollection<Protocols> ProtocolsList { get; } = new();
 
     public AuthViewModel()
     {
+        Service sr = new Service();
         LoadChains();
 
         ShowDialog = new Interaction<MainWindowViewModel, TokenListViewModel?>();
+        LoadProtocols = ReactiveCommand.Create(() =>
+        {
+            ProtocolsList.Clear();
+            if (Selected_Network != null)
+            {
+                CovalentMethods cm = new CovalentMethods();
+                var deXes = cm.GetSupporteDEXes();
+        
+                var id = " ";
+                var dex_name = " ";
+
+                var selected_dexes =
+                    from dex in deXes["data"]["items"]
+                    select new
+                    {
+                        id = (string)dex["chain_id"],
+                        dex_name = (string)dex["dex_name"]
+                    };
+                if (Selected_Network != null)
+                {
+                    foreach (var value in selected_dexes)
+                    {
+                        if (value.id == " " || value.dex_name == " ")
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            if (Selected_Network.Id == value.id)
+                            {
+                                ProtocolsList.Add(new Protocols() {ChainId = value.id, NameProtocol = value.dex_name});
+                            }
+                            else
+                            {
+                                continue;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+            else
+            {
+                sr.MessageBoxShow("Предупреждение", "Вы не выбрали BlockChain!");
+            }
+            
+        });
         Authorization = ReactiveCommand.CreateFromTask(async () =>
         {
             Service sr = new Service();
@@ -31,6 +81,7 @@ public class AuthViewModel : ViewModelBase
             {
                 var mainwin = new MainWindowViewModel();
                 mainwin.Tokens_Add_Col(Selected_Network.Id, wallet_address);
+                mainwin.LoadData(Selected_Network.Id, Selected_Protocols.NameProtocol);
 
                 await ShowDialog.Handle(mainwin);
             }
@@ -70,6 +121,7 @@ public class AuthViewModel : ViewModelBase
                 Networks.Add(new Networks() {Name = value.label, Id = value.ids});
             }
         }
+        
     }
     
     public string wallet_address { get; set; }
@@ -83,8 +135,18 @@ public class AuthViewModel : ViewModelBase
             OnPropertyChanged();
         }
     }
-    
+
+    public Protocols Selected_Protocols
+    {
+        get => _selProtocols;
+        set
+        {
+            _selProtocols = value;
+            OnPropertyChanged();
+        }
+    }
     public ICommand Authorization { get; }
+    public ICommand LoadProtocols { get; }
     
     public Interaction<MainWindowViewModel, TokenListViewModel?> ShowDialog { get; }
 
