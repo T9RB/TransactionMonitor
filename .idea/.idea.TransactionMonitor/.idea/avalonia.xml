@@ -4,14 +4,18 @@
     <option name="projectPerEditor">
       <map>
         <entry key="TransactionMonitor/App.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
+        <entry key="TransactionMonitor/Assets/Icons.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
         <entry key="TransactionMonitor/Views/AuthWindow.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
         <entry key="TransactionMonitor/Views/MainWindow.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
         <entry key="TransactionMonitor/Views/PoolUserControl.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
         <entry key="TransactionMonitor/Views/ProfileWindow.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
         <entry key="TransactionMonitor/Views/ProfileWindows.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
+        <entry key="TransactionMonitor/Views/SmartContractView.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
         <entry key="TransactionMonitor/Views/TokenListUserConrtol.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
         <entry key="TransactionMonitor/Views/TokenListUserControl.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
         <entry key="TransactionMonitor/Views/TransactionListControl.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
+        <entry key="TransactionMonitor/Views/TransactionWithProtocolView.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
+        <entry key="TransactionMonitor/Views/TransactionsProtocolsView.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
       </map>
     </option>
   </component>

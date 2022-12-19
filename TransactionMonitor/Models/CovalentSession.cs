@@ -38,8 +38,5 @@ public class CovalentSession
             JObject? js = null;
             return js;
         }
-
-
-
     }
 }

@@ -7,7 +7,7 @@
         mc:Ignorable="d" d:DesignWidth="960" d:DesignHeight="600"
         x:Class="TransactionMonitor.Views.MainWindow"
         Icon="/Assets/logo.ico"
-        Title="Монитор"
+        Title="Терминал"
         WindowState="Normal"
         Width="900"
         Height="600"
@@ -30,10 +30,13 @@
                     </ExperimentalAcrylicMaterial>
                 </ExperimentalAcrylicBorder.Material>
             </ExperimentalAcrylicBorder>
-            <Button Content="Профиль"
+            <Button
                     Margin="0 -240 800 300"
                     DockPanel.Dock="Bottom"
-                    HorizontalAlignment="Center"/>
+                    HorizontalAlignment="Center"
+                    Command="{Binding GoToProfile}">
+                <PathIcon Data="{StaticResource person_regular}" />
+            </Button>
             <Panel Margin="30 70 500 31">
                 <local:TokenListUserConrtol/>
             </Panel>

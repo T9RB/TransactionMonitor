@@ -3,7 +3,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:TransactionMonitor.ViewModels"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:local="using:TransactionMonitor.Views"
+        mc:Ignorable="d" d:DesignWidth="960" d:DesignHeight="600"
         x:Class="TransactionMonitor.Views.ProfileWindow"
         Title="Профиль"
         Icon="/Assets/logo.ico"
@@ -17,9 +18,20 @@
         <Design.DataContext>
                 <viewModels:ProfileViewModel/>
         </Design.DataContext>
-        
         <DockPanel>
-                
+                <Panel>
+                        <ExperimentalAcrylicBorder>
+                                <ExperimentalAcrylicBorder.Material>
+                                        <ExperimentalAcrylicMaterial
+                                                BackgroundSource="Digger"
+                                                TintColor="Black"
+                                                TintOpacity="1">
+                                        </ExperimentalAcrylicMaterial>
+                                </ExperimentalAcrylicBorder.Material>
+                        </ExperimentalAcrylicBorder>
+                </Panel>
+                <Panel Margin="30 40 500 31">
+                        <local:TransactionWithProtocolView/>
+                </Panel>
         </DockPanel>
-        
 </Window>

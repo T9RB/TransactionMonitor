@@ -2,5 +2,8 @@
 
 public class ProfileViewModel
 {
-    
+    public ProfileViewModel()
+    {
+        
+    }
 }

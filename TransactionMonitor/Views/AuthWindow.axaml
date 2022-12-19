@@ -50,10 +50,10 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <Button
-                    Content="Прогрузить протоколы"
-                    Margin="175 -30 0 0"
+                    Margin="160 -30 0 0"
                     CornerRadius="20"
                     Command="{Binding LoadProtocols}">
+                    <PathIcon Data="{StaticResource arrow_clockwise_regular}"/>
                 </Button>
                 <Button
                     Content="     Войти     "

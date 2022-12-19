@@ -15,6 +15,20 @@ namespace TransactionMonitor.Views
         public MainWindow()
         {
             InitializeComponent();
+            this.WhenActivated(d => d(ViewModel!.ShowDialog.RegisterHandler(DoShowDialogAsync)));
+        }
+        private async Task DoShowDialogAsync(InteractionContext<ProfileViewModel, TransactionWithProtocolViewModel?> interaction)
+        {
+            var dialog = new ProfileWindow();
+            dialog.DataContext = interaction.Input;
+            var result = await dialog.ShowDialog<TransactionWithProtocolViewModel>(this);    
+            interaction.SetOutput(result);
+        }
+        private void InitializeComponent()
+        {
+            AvaloniaXamlLoader.Load(this);
+            this.CanResize = false;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
     }
 }

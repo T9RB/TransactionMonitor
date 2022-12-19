@@ -19,6 +19,7 @@ namespace TransactionMonitor.ViewModels
 
         public MainWindowViewModel()
         {
+            ShowDialog = new Interaction<ProfileViewModel, TransactionWithProtocolViewModel?>();
             AddPoolsList = ReactiveCommand.Create(() =>
             {
                 CovalentMethods cm = new CovalentMethods();
@@ -50,7 +51,14 @@ namespace TransactionMonitor.ViewModels
                             {Dex_Name = value.dex_name,Total_Quote = value.total_liquidity_quote, Total_Suply = value.total_suply});
                     }
                 }
-               
+            });
+            GoToProfile = ReactiveCommand.CreateFromTask(async () =>
+            {
+                
+                var profilewindow = new ProfileViewModel();
+                var transactionwithprotocol = new TransactionWithProtocolViewModel();
+                transactionwithprotocol.LoadTransactions(ChainId, Name_Protocol, Address_Wallet);
+                await ShowDialog.Handle(profilewindow);
             });
         }
 
@@ -58,6 +66,7 @@ namespace TransactionMonitor.ViewModels
         {
             CovalentMethods cm = new CovalentMethods();
             Service sr = new Service();
+            Address_Wallet = Wallet;
             var Tokens = cm.GetTokenBalanceForAddress(Network, Wallet);
             var Transaction = cm.GetTransactionForAddress(Network, Wallet);
             if (Tokens == null || Transaction == null)
@@ -116,14 +125,16 @@ namespace TransactionMonitor.ViewModels
         public void LoadData(string chainId, string dex)
         {
             ChainId = chainId;
+            
             Name_Protocol = dex;
         }
         public string PoolAddress { get; set; }
         public string ChainId { get; set; }
         public string Name_Protocol { get; set; }
+        public string Address_Wallet { get; set; }
         public ICommand AddPoolsList { get; }
         public ICommand GoToProfile { get; }
         
-        public Interaction<MainWindowViewModel, ProfileViewModel?> ShowDialog { get; }
+        public Interaction<ProfileViewModel, TransactionWithProtocolViewModel?> ShowDialog { get; }
     }
 }

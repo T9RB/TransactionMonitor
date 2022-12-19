@@ -15,7 +15,7 @@
             <Button
                 Content="Прогрузить pool"
                 CornerRadius="20"
-                Margin="60 5 0 0"
+                Margin="80 5 0 0"
                 Command="{Binding AddPoolsList}"/>
             
             <ListBox Items="{Binding ActivePoolsByAddresses}"
