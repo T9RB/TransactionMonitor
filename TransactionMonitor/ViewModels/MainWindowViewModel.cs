@@ -122,5 +122,8 @@ namespace TransactionMonitor.ViewModels
         public string ChainId { get; set; }
         public string Name_Protocol { get; set; }
         public ICommand AddPoolsList { get; }
+        public ICommand GoToProfile { get; }
+        
+        public Interaction<MainWindowViewModel, ProfileViewModel?> ShowDialog { get; }
     }
 }

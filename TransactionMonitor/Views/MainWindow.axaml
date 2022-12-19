@@ -12,8 +12,6 @@
         Width="900"
         Height="600"
         WindowStartupLocation="CenterScreen"
-        
-        
         TransparencyLevelHint="AcrylicBlur"
         Background="Transparent">
    
