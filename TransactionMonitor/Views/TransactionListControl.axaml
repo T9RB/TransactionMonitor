@@ -8,16 +8,15 @@
     <Design.DataContext>
         <viewModels:MainWindowViewModel/>
     </Design.DataContext>
-    
     <DockPanel>
-        <ListBox Items="{Binding TokensList}" Margin="0 0 0 0">
+        <ListBox Items="{Binding TransactionsList}" Margin="0 0 0 0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding Name_token}"/>
-                        <TextBlock Text="{Binding Balance}"/>
+                        <TextBlock Text="{Binding Hash}"/>
+                        <TextBlock Text="{Binding Successful}"/>
+                        <TextBlock Text="{Binding ValueTransaction}"/>
                     </StackPanel>
-                    
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

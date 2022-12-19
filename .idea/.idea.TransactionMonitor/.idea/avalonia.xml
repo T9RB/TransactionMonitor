@@ -6,6 +6,7 @@
         <entry key="TransactionMonitor/App.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
         <entry key="TransactionMonitor/Views/AuthWindow.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
         <entry key="TransactionMonitor/Views/MainWindow.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
+        <entry key="TransactionMonitor/Views/PoolUserControl.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
         <entry key="TransactionMonitor/Views/TokenListUserConrtol.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
         <entry key="TransactionMonitor/Views/TokenListUserControl.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />
         <entry key="TransactionMonitor/Views/TransactionListControl.axaml" value="TransactionMonitor/TransactionMonitor.csproj" />

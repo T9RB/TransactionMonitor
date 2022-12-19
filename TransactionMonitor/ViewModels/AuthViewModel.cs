@@ -31,6 +31,7 @@ public class AuthViewModel : ViewModelBase
             {
                 var mainwin = new MainWindowViewModel();
                 mainwin.Tokens_Add_Col(Selected_Network.Id, wallet_address);
+
                 await ShowDialog.Handle(mainwin);
             }
             
@@ -68,7 +69,6 @@ public class AuthViewModel : ViewModelBase
             {
                 Networks.Add(new Networks() {Name = value.label, Id = value.ids});
             }
-            
         }
     }
     

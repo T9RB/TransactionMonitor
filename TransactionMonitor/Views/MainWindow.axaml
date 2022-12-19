@@ -14,7 +14,7 @@
         WindowStartupLocation="CenterScreen">
    
     <Design.DataContext>
-        <vm:TokenListViewModel/>
+        <vm:MainWindowViewModel/>
     </Design.DataContext>
     
     <Panel>
@@ -27,12 +27,14 @@
                 </ExperimentalAcrylicMaterial>
             </ExperimentalAcrylicBorder.Material>
         </ExperimentalAcrylicBorder>
-        <Panel Margin="30 30 500 30">
+        <Panel Margin="30 30 500 31">
             <local:TokenListUserConrtol/>
         </Panel>
-        <Panel Margin="30 0 0 0">
-            <local:TransactionListControl>
+        <Panel Margin="550 30 30 340">
+            <local:TransactionListControl/>
         </Panel>
-        
+        <Panel Margin="550 350 30 200">
+            <local:PoolUserControl/>
+        </Panel>
     </Panel>
 </Window>

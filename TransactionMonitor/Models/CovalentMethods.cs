@@ -3,7 +3,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using static CovalentSDK.Covalent.CovalentSession;
-using static CovalentSDK.Covalent.CovalentNetworks;
 namespace CovalentSDK.Covalent;
 
 public class CovalentMethods
