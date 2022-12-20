@@ -1,14 +1,10 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reactive;
 using System.Reactive.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using CovalentSDK.Covalent;
-using Microsoft.VisualBasic;
-using Newtonsoft.Json.Linq;
 using ReactiveUI;
-using TransactionMonitor.Views;
 
 namespace TransactionMonitor.ViewModels;
 
@@ -30,47 +26,50 @@ public class AuthViewModel : ViewModelBase
             ProtocolsList.Clear();
             if (Selected_Network != null)
             {
-                CovalentMethods cm = new CovalentMethods();
-                var deXes = cm.GetSupporteDEXes();
-        
-                var id = " ";
-                var dex_name = " ";
-
-                var selected_dexes =
-                    from dex in deXes["data"]["items"]
-                    select new
-                    {
-                        id = (string)dex["chain_id"],
-                        dex_name = (string)dex["dex_name"]
-                    };
-                if (Selected_Network != null)
+                try
                 {
-                    foreach (var value in selected_dexes)
+                    CovalentMethods cm = new CovalentMethods();
+                    var deXes = cm.GetSupporteDEXes();
+        
+                    var id = " ";
+                    var dex_name = " ";
+
+                    var selected_dexes =
+                        from dex in deXes["data"]["items"]
+                        select new
+                        {
+                            id = (string)dex["chain_id"],
+                            dex_name = (string)dex["dex_name"]
+                        };
+                    if (Selected_Network != null)
                     {
-                        if (value.id == " " || value.dex_name == " ")
+                        foreach (var value in selected_dexes)
                         {
-                            continue;
-                        }
-                        else
-                        {
-                            if (Selected_Network.Id == value.id)
-                            {
-                                ProtocolsList.Add(new Protocols() {ChainId = value.id, NameProtocol = value.dex_name});
-                            }
-                            else
+                            if (value.id == " " || value.dex_name == " ")
                             {
                                 continue;
                             }
+                            else
+                            {
+                                if (Selected_Network.Id == value.id)
+                                {
+                                    ProtocolsList.Add(new Protocols() {ChainId = value.id, NameProtocol = value.dex_name});
+                                }
+                                else
+                                {
+                                    continue;
+                                }
                             
+                            }
                         }
                     }
                 }
+                catch (Exception e)
+                {
+                    
+                }
             }
-            else
-            {
-                sr.MessageBoxShow("Предупреждение", "Вы не выбрали BlockChain!");
-            }
-            
+
         });
         Authorization = ReactiveCommand.CreateFromTask(async () =>
         {
@@ -85,12 +84,6 @@ public class AuthViewModel : ViewModelBase
 
                 await ShowDialog.Handle(mainwin);
             }
-            
-            if (auth_status == false)
-            {
-                sr.MessageBoxShow("Предупреждение","Неверные данные! Повторите попытку");
-            }
-            
         });
         
         
@@ -101,27 +94,33 @@ public class AuthViewModel : ViewModelBase
         CovalentMethods cm = new CovalentMethods();
         var chain = cm.GetAllChain();
 
-        var ids = " ";
-        var label = " ";
-        var chains =
-            from c in chain["data"]["items"]
-            select new
-            {
-                ids = (string)c["chain_id"],
-                label = (string)c["label"]
-            };
-        foreach (var value in chains)
+        try
         {
-            if (value.ids == " " || value.label == " ")
+            var ids = " ";
+            var label = " ";
+            var chains =
+                from c in chain["data"]["items"]
+                select new
+                {
+                    ids = (string)c["chain_id"],
+                    label = (string)c["label"]
+                };
+            foreach (var value in chains)
             {
-                continue;
-            }
-            else
-            {
-                Networks.Add(new Networks() {Name = value.label, Id = value.ids});
+                if (value.ids == " " || value.label == " ")
+                {
+                    continue;
+                }
+                else
+                {
+                    Networks.Add(new Networks() {Name = value.label, Id = value.ids});
+                }
             }
         }
-        
+        catch (Exception e)
+        {
+           
+        }
     }
     
     public string wallet_address { get; set; }

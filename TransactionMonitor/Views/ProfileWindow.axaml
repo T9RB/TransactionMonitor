@@ -29,9 +29,12 @@
                                         </ExperimentalAcrylicMaterial>
                                 </ExperimentalAcrylicBorder.Material>
                         </ExperimentalAcrylicBorder>
-                </Panel>
-                <Panel Margin="30 40 500 31">
-                        <local:TransactionWithProtocolView/>
+                        <Panel Margin="30 100 650 120">
+                                <local:TransactionWithProtocolView/>
+                        </Panel>
+                        <Panel Margin="350 100 350 100">
+                                <local:GetATransactionView/>
+                        </Panel>
                 </Panel>
         </DockPanel>
 </Window>

@@ -4,28 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:TransactionMonitor.ViewModels"
              mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="250"
-             x:Class="TransactionMonitor.Views.PoolUserControl">
+             x:Class="TransactionMonitor.Views.GetATransactionView">
     <Design.DataContext>
-        <viewModels:MainWindowViewModel/>
+        <viewModels:ProfileViewModel/>
     </Design.DataContext>
     
     <DockPanel>
         <StackPanel>
-            <TextBox Text="{Binding PoolAddress}" Watermark="Pool адрес"/>
+            <TextBox Text="{Binding Hash}" Watermark="Hash транзакции"/>
             <Button
-                Content="Прогрузить pool"
+                Content="Найти транзакцию"
                 CornerRadius="20"
-                Margin="100 5 0 0"
-                Command="{Binding AddPoolsList}"/>
+                Margin="20 5 0 0"
+                Command="{Binding LoadDataTransactions}"/>
             
-            <ListBox Items="{Binding ActivePoolsByAddresses}"
+            <ListBox Items="{Binding TransactionsList}"
                      Margin="0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <TextBlock Text="{Binding Dex_Name}"/>
-                            <TextBlock Text="{Binding Total_Quote}"/>
-                            <TextBlock Text="{Binding Total_Suply}"/>
+                            <TextBlock Text="{Binding Hash}"/>
+                            <TextBlock Text="{Binding Successful}"/>
+                            <TextBlock Text="{Binding ValueTransaction}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

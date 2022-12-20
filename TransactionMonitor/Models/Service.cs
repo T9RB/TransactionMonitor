@@ -33,13 +33,4 @@ public class Service
             return Auth_Check;
         }
     }
-
-    public void MessageBoxShow(string title ,string text)
-    {
-        var messageBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager
-            .GetMessageBoxStandardWindow(title, text);
-        messageBoxStandardWindow.Show();
-    }
-   
-
 }

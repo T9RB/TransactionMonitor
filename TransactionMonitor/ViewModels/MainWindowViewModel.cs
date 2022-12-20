@@ -4,10 +4,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Windows.Input;
 using CovalentSDK.Covalent;
-using DynamicData.Binding;
-using Microsoft.VisualBasic;
 using ReactiveUI;
-using TransactionMonitor.Views;
 
 namespace TransactionMonitor.ViewModels
 {
@@ -27,11 +24,7 @@ namespace TransactionMonitor.ViewModels
                 Service sr = new Service();
                 var ActivePools = cm.GetPoolsByAddress(ChainId, Name_Protocol,
                     PoolAddress);
-                if (ActivePools == null)
-                {
-                    sr.MessageBoxShow("Предупреждение", "Вы ввели неверные данные");
-                }
-                else
+                try
                 {
                     var dex_name = " ";
                     var total_suply = " ";
@@ -51,13 +44,17 @@ namespace TransactionMonitor.ViewModels
                             {Dex_Name = value.dex_name,Total_Quote = value.total_liquidity_quote, Total_Suply = value.total_suply});
                     }
                 }
+                catch (Exception e)
+                {
+                    
+                }
             });
             GoToProfile = ReactiveCommand.CreateFromTask(async () =>
             {
-                
                 var profilewindow = new ProfileViewModel();
-                var transactionwithprotocol = new TransactionWithProtocolViewModel();
-                transactionwithprotocol.LoadTransactions(ChainId, Name_Protocol, Address_Wallet);
+                profilewindow.LoadData(ChainId, Name_Protocol, Address_Wallet);
+                profilewindow.LoadCollection();
+
                 await ShowDialog.Handle(profilewindow);
             });
         }
@@ -69,11 +66,8 @@ namespace TransactionMonitor.ViewModels
             Address_Wallet = Wallet;
             var Tokens = cm.GetTokenBalanceForAddress(Network, Wallet);
             var Transaction = cm.GetTransactionForAddress(Network, Wallet);
-            if (Tokens == null || Transaction == null)
-            {
-                sr.MessageBoxShow("Предупреждение", "Вы ввели неверные данные");
-            }
-            else
+
+            try
             {
                 var name = " ";
                 var balance = " ";
@@ -119,6 +113,10 @@ namespace TransactionMonitor.ViewModels
                     }
                    
                 }
+            }
+            catch (Exception e)
+            {
+                
             }
         }
 
